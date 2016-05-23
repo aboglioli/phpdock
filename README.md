@@ -8,6 +8,24 @@ docker-compose configuration. You can use any library or framework.
 
 The _workspace_ container gives you a basic Bash + PHP (with Composer) installation.
 
+## How to use
+First, you need to install __docker-compose__.
+
+You can create the environment cloning this repo:
+```bash
+# Cloning repository
+git clone https://github.com/aboglioli/phpdock.git
+cd phpdock
+
+# Building the environment and setting it up.
+# You can write mariadb instead of mysql if you want to use this.
+# It can take a while (some minutes).
+docker-compose up -d nginx mysql
+
+# And access the workspace to install libraries or frameworks with composer
+docker-compose exec workspace bash
+```
+
 
 ## Help & Questions
 

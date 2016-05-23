@@ -20,7 +20,7 @@ services:
   application:
       build: ./application
       volumes:
-          - ../app:/var/www/public
+          - ../app/:/var/www/public
 
 ### Databases Data Container ################################
 

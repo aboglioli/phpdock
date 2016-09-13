@@ -107,7 +107,6 @@ services:
       image: phpmyadmin/phpmyadmin
       environment:
           - PMA_ARBITRARY=1
-      restart: always
       ports:
           - "8080:80"
 

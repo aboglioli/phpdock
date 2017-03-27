@@ -1,7 +1,6 @@
 # Nginx + MariaDB/MySQL + PHP-FPM + PHP 7.0 + phpMyAdmin + Redis
 
-Based on [laradock](https://github.com/LaraDock/laradock) (an environment to
-start with Laravel).
+Based on [laradock](https://github.com/LaraDock/laradock).
 
 It's made for having a __PHP__ + __DB__ environment quickly through
 docker-compose configuration. You can use any library or framework.
@@ -10,9 +9,9 @@ The _workspace_ container gives you a basic Bash + PHP (with Composer)
 installation.
 
 ## How to use
-First, you need to install __docker-compose__.
+Install __docker-compose__.
 
-You can create the environment cloning this repo:
+You can create the environment cloning this repository inside your main repository:
 ```bash
 # Cloning repository
 git clone https://github.com/aboglioli/phpdock.git
@@ -28,11 +27,13 @@ docker-compose exec workspace bash
 ```
 
 ## Public folder
-Nginx and php-fpm __WORKDIR__ is _/var/www/public_ and __app/__ local directory
-(where will be you application or PHP code) outside phpdock is referenced with
-_/var/www_ inside application container (application code container).
+`/var/www` points to your root directory. It needs a `public` folder where Nginx looks at.
 
-So you have to make a directory called _public/_ inside _app/_ local directory.
+Nginx and php-fpm `WORKDIR` is `/var/www/public` and your root directory
+(where your application will be) outside phpdock is referenced with
+`/var/www` inside application container (application code container).
+
+You have to make a directory called `public/` inside the root directory.
 It will have the root directory of your application. By this way, you can
 include PHP files from the parent directory (_../_) to your code and that files
 can't be accessed directly from the browser.

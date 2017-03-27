@@ -5,14 +5,32 @@ MAINTAINER Alan Boglioli <alan.boglioli@gmail.com>
 RUN apt-get update && apt-get install -y \
     libpq-dev \
     libmemcached-dev \
+    cron \
+    libfreetype6-dev \
+    libicu-dev \
+    libjpeg62-turbo-dev \
+    libmcrypt-dev \
+    libpng12-dev \
+    libxslt1-dev \
+    sendmail-bin \
+    sendmail \
     curl
 
-# Install extensions using the helper script provided by the base image
-RUN docker-php-ext-install pdo_mysql #pdo_pgsql (for PostgreSQL)
+# Configure the gd library
+RUN docker-php-ext-configure \
+  gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
 
-RUN docker-php-ext-install mysqli \
-    && docker-php-ext-install pdo_mysql \
-    && docker-php-ext-install zip
+# Install required PHP extensions
+RUN docker-php-ext-install \
+  gd \
+  intl \
+  mbstring \
+  mcrypt \
+  pdo_mysql \
+  xsl \
+  zip \
+  soap
+  #pdo_pgsql
 
 # Install Memcached for php 7
 RUN curl -L -o /tmp/memcached.tar.gz "https://github.com/php-memcached-dev/php-memcached/archive/php7.tar.gz" \
